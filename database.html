@@ -1,0 +1,2388 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title>Database | EDU-TECH</title>
+
+<style>
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        font-family: "Segoe UI", Arial, sans-serif;
+        color: white;
+        min-height: 100vh;
+        overflow-x: hidden;
+
+        background:
+            radial-gradient(
+                circle at 10% 10%,
+                rgba(59, 130, 246, 0.22),
+                transparent 30%
+            ),
+            radial-gradient(
+                circle at 90% 20%,
+                rgba(139, 92, 246, 0.20),
+                transparent 30%
+            ),
+            radial-gradient(
+                circle at 50% 100%,
+                rgba(14, 165, 233, 0.12),
+                transparent 35%
+            ),
+            linear-gradient(
+                135deg,
+                #050a18,
+                #0b1631,
+                #111333
+            );
+    }
+
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    header {
+        width: 100%;
+        padding: 17px 7%;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+
+        background:
+            rgba(5, 10, 24, 0.82);
+
+        backdrop-filter: blur(18px);
+
+        border-bottom:
+            1px solid rgba(255, 255, 255, 0.08);
+    }
+
+
+    .logo {
+        font-size: 25px;
+        font-weight: 900;
+        letter-spacing: 1px;
+    }
+
+
+    .logo span {
+        color: #4da3ff;
+    }
+
+
+    .back-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+
+        padding: 10px 18px;
+
+        color: white;
+        text-decoration: none;
+
+        border-radius: 30px;
+
+        background:
+            rgba(77, 163, 255, 0.12);
+
+        border:
+            1px solid rgba(77, 163, 255, 0.35);
+
+        transition: 0.3s ease;
+    }
+
+
+    .back-btn:hover {
+        background: #368df5;
+        transform: translateY(-2px);
+
+        box-shadow:
+            0 8px 25px rgba(54, 141, 245, 0.3);
+    }
+
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+        text-align: center;
+        padding: 80px 20px 55px;
+    }
+
+
+    .hero-badge {
+        display: inline-block;
+
+        padding: 8px 18px;
+
+        border-radius: 30px;
+
+        color: #b8dcff;
+
+        background:
+            rgba(77, 163, 255, 0.11);
+
+        border:
+            1px solid rgba(77, 163, 255, 0.32);
+
+        font-size: 14px;
+
+        margin-bottom: 22px;
+    }
+
+
+    .hero h1 {
+        font-size: clamp(45px, 8vw, 80px);
+
+        line-height: 1;
+
+        margin-bottom: 22px;
+
+        background:
+            linear-gradient(
+                90deg,
+                #ffffff,
+                #74b7ff,
+                #b49cff
+            );
+
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+
+    .hero p {
+        max-width: 760px;
+
+        margin: auto;
+
+        color: #c4cbe0;
+
+        font-size: 18px;
+
+        line-height: 1.7;
+    }
+
+
+    /* =========================
+       MAIN CONTAINER
+    ========================= */
+
+    .container {
+        width: min(1150px, 92%);
+        margin: auto;
+    }
+
+
+    .section {
+        margin: 65px 0;
+    }
+
+
+    .section-title {
+        text-align: center;
+        margin-bottom: 32px;
+    }
+
+
+    .section-title h2 {
+        font-size: 32px;
+        margin-bottom: 9px;
+    }
+
+
+    .section-title p {
+        color: #aeb7ce;
+    }
+
+
+    /* =========================
+       TOPIC CARDS
+    ========================= */
+
+    .topic-grid {
+        display: grid;
+
+        grid-template-columns:
+            repeat(3, 1fr);
+
+        gap: 20px;
+    }
+
+
+    .topic-card {
+        padding: 28px 22px;
+
+        text-align: center;
+
+        border-radius: 23px;
+
+        background:
+            rgba(255, 255, 255, 0.055);
+
+        border:
+            1px solid rgba(255, 255, 255, 0.09);
+
+        backdrop-filter: blur(10px);
+
+        transition: 0.3s ease;
+    }
+
+
+    .topic-card:hover {
+        transform: translateY(-8px);
+
+        border-color:
+            rgba(77, 163, 255, 0.65);
+
+        box-shadow:
+            0 15px 40px rgba(0, 0, 0, 0.28);
+    }
+
+
+    .topic-number {
+        color: #5faeff;
+
+        font-size: 13px;
+
+        font-weight: 800;
+
+        letter-spacing: 2px;
+
+        margin-bottom: 10px;
+    }
+
+
+    .topic-icon {
+        width: 68px;
+        height: 68px;
+
+        margin: 0 auto 18px;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        border-radius: 20px;
+
+        background:
+            rgba(77, 163, 255, 0.13);
+
+        font-size: 32px;
+    }
+
+
+    .topic-card h3 {
+        margin-bottom: 10px;
+    }
+
+
+    .topic-card p {
+        color: #b7bfd3;
+
+        font-size: 14px;
+
+        line-height: 1.65;
+    }
+
+
+    /* =========================
+       MATERIAL / IMAGE
+    ========================= */
+
+    .material-card {
+        display: grid;
+
+        grid-template-columns:
+            1fr 1fr;
+
+        gap: 28px;
+
+        padding: 28px;
+
+        border-radius: 25px;
+
+        background:
+            rgba(255, 255, 255, 0.055);
+
+        border:
+            1px solid rgba(255, 255, 255, 0.09);
+
+        backdrop-filter: blur(10px);
+    }
+
+
+    .material-text {
+        display: flex;
+
+        flex-direction: column;
+
+        justify-content: center;
+    }
+
+
+    .material-text h3 {
+        font-size: 28px;
+        margin-bottom: 14px;
+    }
+
+
+    .material-text p {
+        color: #bfc6d8;
+
+        line-height: 1.7;
+
+        margin-bottom: 22px;
+    }
+
+
+    .material-image {
+        width: 100%;
+
+        height: 300px;
+
+        object-fit: cover;
+
+        border-radius: 18px;
+
+        border:
+            1px solid rgba(255, 255, 255, 0.1);
+
+        transition: 0.3s ease;
+    }
+
+
+    .material-image:hover {
+        transform: scale(1.02);
+    }
+
+
+    /* =========================
+       BUTTON
+    ========================= */
+
+    .main-btn {
+        display: inline-flex;
+
+        align-items: center;
+        justify-content: center;
+
+        width: fit-content;
+
+        padding: 13px 24px;
+
+        color: white;
+
+        text-decoration: none;
+
+        border: none;
+
+        border-radius: 30px;
+
+        background:
+            linear-gradient(
+                135deg,
+                #368df5,
+                #7c5cff
+            );
+
+        font-size: 15px;
+
+        font-weight: 700;
+
+        cursor: pointer;
+
+        transition: 0.3s ease;
+    }
+
+
+    .main-btn:hover {
+        transform: translateY(-3px);
+
+        box-shadow:
+            0 10px 30px rgba(54, 141, 245, 0.35);
+    }
+
+
+    /* =========================
+       VIDEO SECTION
+    ========================= */
+
+    .video-grid {
+        display: grid;
+
+        grid-template-columns:
+            1fr 1fr;
+
+        gap: 25px;
+    }
+
+
+    .video-card {
+        padding: 18px;
+
+        border-radius: 23px;
+
+        background:
+            rgba(255, 255, 255, 0.055);
+
+        border:
+            1px solid rgba(255, 255, 255, 0.09);
+
+        backdrop-filter: blur(10px);
+
+        transition: 0.3s ease;
+    }
+
+
+    .video-card:hover {
+        transform: translateY(-5px);
+
+        border-color:
+            rgba(77, 163, 255, 0.45);
+    }
+
+
+    .video-card h3 {
+        margin: 4px 5px 16px;
+        font-size: 20px;
+    }
+
+
+    .video-wrapper {
+        position: relative;
+
+        width: 100%;
+
+        padding-bottom: 56.25%;
+
+        height: 0;
+
+        overflow: hidden;
+
+        border-radius: 16px;
+    }
+
+
+    .video-wrapper iframe {
+        position: absolute;
+
+        width: 100%;
+        height: 100%;
+
+        left: 0;
+        top: 0;
+
+        border: none;
+    }
+
+
+    /* =========================
+       PDF SECTION
+    ========================= */
+
+    .pdf-card {
+        text-align: center;
+
+        padding: 45px 25px;
+
+        border-radius: 25px;
+
+        background:
+            rgba(255, 255, 255, 0.055);
+
+        border:
+            1px solid rgba(255, 255, 255, 0.09);
+
+        backdrop-filter: blur(10px);
+    }
+
+
+    .pdf-icon {
+        font-size: 65px;
+        margin-bottom: 15px;
+    }
+
+
+    .pdf-card h3 {
+        font-size: 27px;
+        margin-bottom: 10px;
+    }
+
+
+    .pdf-card p {
+        color: #b8bfd2;
+
+        margin-bottom: 24px;
+
+        line-height: 1.6;
+    }
+
+
+    .pdf-buttons {
+        display: flex;
+
+        justify-content: center;
+        align-items: center;
+
+        gap: 12px;
+
+        flex-wrap: wrap;
+    }
+
+
+    .pdf-download-btn {
+        display: inline-flex;
+
+        align-items: center;
+        justify-content: center;
+
+        padding: 13px 24px;
+
+        color: white;
+
+        text-decoration: none;
+
+        border-radius: 30px;
+
+        background:
+            rgba(255, 255, 255, 0.08);
+
+        border:
+            1px solid rgba(255, 255, 255, 0.16);
+
+        font-size: 15px;
+
+        font-weight: 700;
+
+        transition: 0.3s ease;
+    }
+
+
+    .pdf-download-btn:hover {
+        background:
+            rgba(77, 163, 255, 0.2);
+
+        border-color: #559eff;
+
+        transform: translateY(-3px);
+    }
+
+
+    /* =========================
+       DATABASE TABLE
+    ========================= */
+
+    .table-card {
+        padding: 25px;
+
+        border-radius: 25px;
+
+        background:
+            rgba(255, 255, 255, 0.055);
+
+        border:
+            1px solid rgba(255, 255, 255, 0.09);
+
+        overflow-x: auto;
+    }
+
+
+    table {
+        width: 100%;
+
+        border-collapse: collapse;
+
+        min-width: 600px;
+    }
+
+
+    th,
+    td {
+        padding: 15px;
+
+        text-align: left;
+
+        border-bottom:
+            1px solid rgba(255, 255, 255, 0.08);
+    }
+
+
+    th {
+        color: #80bdff;
+
+        background:
+            rgba(77, 163, 255, 0.08);
+    }
+
+
+    td {
+        color: #c7ccdd;
+    }
+
+
+    tr:hover td {
+        background:
+            rgba(255, 255, 255, 0.025);
+    }
+
+
+    /* =========================
+       SQL SECTION
+    ========================= */
+
+    .sql-box {
+        padding: 28px;
+
+        border-radius: 25px;
+
+        background: #050914;
+
+        border:
+            1px solid rgba(77, 163, 255, 0.25);
+
+        overflow-x: auto;
+    }
+
+
+    .sql-title {
+        margin-bottom: 15px;
+
+        color: #82bdff;
+
+        font-weight: 700;
+    }
+
+
+    pre {
+        color: #d7e7ff;
+
+        font-family:
+            Consolas,
+            "Courier New",
+            monospace;
+
+        line-height: 1.7;
+
+        font-size: 14px;
+
+        white-space: pre-wrap;
+    }
+
+
+    /* =========================
+       QUIZ
+    ========================= */
+
+    .quiz-box {
+        max-width: 780px;
+
+        margin: auto;
+
+        padding: 30px;
+
+        border-radius: 25px;
+
+        background:
+            rgba(255, 255, 255, 0.055);
+
+        border:
+            1px solid rgba(255, 255, 255, 0.09);
+
+        backdrop-filter: blur(10px);
+    }
+
+
+    .quiz-progress {
+        color: #9eacc7;
+        margin-bottom: 15px;
+    }
+
+
+    .question {
+        font-size: 23px;
+
+        font-weight: 700;
+
+        margin-bottom: 20px;
+    }
+
+
+    .answers {
+        display: grid;
+        gap: 12px;
+    }
+
+
+    .answer-btn {
+        width: 100%;
+
+        padding: 15px;
+
+        border:
+            1px solid rgba(255, 255, 255, 0.12);
+
+        border-radius: 13px;
+
+        background:
+            rgba(255, 255, 255, 0.05);
+
+        color: white;
+
+        cursor: pointer;
+
+        text-align: left;
+
+        font-size: 15px;
+
+        transition: 0.25s ease;
+    }
+
+
+    .answer-btn:hover:not(:disabled) {
+        background:
+            rgba(77, 163, 255, 0.16);
+
+        border-color: #559eff;
+
+        transform: translateX(3px);
+    }
+
+
+    .answer-btn:disabled {
+        cursor: default;
+    }
+
+
+    .answer-btn.correct {
+        background:
+            rgba(34, 197, 94, 0.2);
+
+        border-color: #22c55e;
+    }
+
+
+    .answer-btn.wrong {
+        background:
+            rgba(239, 68, 68, 0.2);
+
+        border-color: #ef4444;
+    }
+
+
+    .quiz-result {
+        text-align: center;
+
+        margin-top: 25px;
+
+        font-size: 22px;
+
+        font-weight: bold;
+
+        color: #c9dcff;
+    }
+
+
+    .restart-btn {
+        margin-top: 20px;
+
+        padding: 12px 24px;
+
+        border: none;
+
+        border-radius: 30px;
+
+        background:
+            linear-gradient(
+                135deg,
+                #368df5,
+                #7c5cff
+            );
+
+        color: white;
+
+        font-weight: 700;
+
+        cursor: pointer;
+
+        transition: 0.3s ease;
+    }
+
+
+    .restart-btn:hover {
+        transform: translateY(-3px);
+
+        box-shadow:
+            0 10px 25px rgba(54, 141, 245, 0.3);
+    }
+
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+        text-align: center;
+
+        padding: 45px 20px;
+
+        margin-top: 70px;
+
+        border-top:
+            1px solid rgba(255, 255, 255, 0.08);
+
+        color: #8f99b2;
+    }
+
+
+    footer strong {
+        color: #76b7ff;
+    }
+
+
+    /* =========================
+       TABLET
+    ========================= */
+
+    @media (max-width: 900px) {
+
+        .topic-grid {
+            grid-template-columns:
+                repeat(2, 1fr);
+        }
+
+
+        .material-card {
+            grid-template-columns: 1fr;
+        }
+
+
+        .video-grid {
+            grid-template-columns: 1fr;
+        }
+
+    }
+
+
+    /* =========================
+       PHONE
+    ========================= */
+
+    @media (max-width: 600px) {
+
+        header {
+            padding: 14px 5%;
+        }
+
+
+        .logo {
+            font-size: 21px;
+        }
+
+
+        .back-btn {
+            padding: 8px 13px;
+            font-size: 13px;
+        }
+
+
+        .hero {
+            padding:
+                55px 15px 40px;
+        }
+
+
+        .hero h1 {
+            font-size: 50px;
+        }
+
+
+        .hero p {
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+
+        .section {
+            margin: 45px 0;
+        }
+
+
+        .section-title h2 {
+            font-size: 27px;
+        }
+
+
+        .section-title p {
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+
+        .topic-grid {
+            grid-template-columns: 1fr;
+        }
+
+
+        .topic-card {
+            padding: 25px 18px;
+        }
+
+
+        .material-card {
+            padding: 18px;
+        }
+
+
+        .material-image {
+            height: 230px;
+        }
+
+
+        .material-text h3 {
+            font-size: 24px;
+        }
+
+
+        .material-text p {
+            font-size: 14px;
+        }
+
+
+        .material-text .main-btn {
+            width: 100%;
+        }
+
+
+        .pdf-card {
+            padding: 30px 18px;
+        }
+
+
+        .pdf-icon {
+            font-size: 55px;
+        }
+
+
+        .pdf-card h3 {
+            font-size: 23px;
+        }
+
+
+        .pdf-card p {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+
+        .pdf-buttons {
+            flex-direction: column;
+            width: 100%;
+        }
+
+
+        .pdf-buttons a {
+            width: 100%;
+            max-width: 320px;
+        }
+
+
+        .video-card {
+            padding: 12px;
+        }
+
+
+        .video-card h3 {
+            font-size: 18px;
+        }
+
+
+        .table-card {
+            padding: 15px;
+        }
+
+
+        .sql-box {
+            padding: 20px;
+        }
+
+
+        pre {
+            font-size: 12px;
+        }
+
+
+        .quiz-box {
+            padding: 20px;
+        }
+
+
+        .question {
+            font-size: 20px;
+            line-height: 1.4;
+        }
+
+
+        .answer-btn {
+            padding: 14px;
+            font-size: 14px;
+        }
+
+    }
+
+</style>
+
+
+</head>
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================== -->
+
+<header>
+
+    <div class="logo">
+        EDU<span>-TECH</span>
+    </div>
+
+
+    <a
+        href="index.html"
+        class="back-btn">
+
+        ← Back
+
+    </a>
+
+</header>
+
+
+
+<!-- =========================
+     HERO
+========================== -->
+
+<section class="hero">
+
+    <div class="hero-badge">
+
+        🗄️ Learn • Practice • Quiz
+
+    </div>
+
+
+    <h1>
+        Database
+    </h1>
+
+
+    <p>
+
+        Learn database fundamentals,
+        tables, keys, SQL commands and
+        database management through
+        interactive lessons, videos,
+        learning materials and quizzes.
+
+    </p>
+
+</section>
+
+
+
+<main class="container">
+
+
+    <!-- =========================
+         TOPICS
+    ========================== -->
+
+    <section class="section">
+
+        <div class="section-title">
+
+            <h2>
+                🗄️ Database Fundamentals
+            </h2>
+
+            <p>
+                Explore the important concepts
+                of databases.
+            </p>
+
+        </div>
+
+
+        <div class="topic-grid">
+
+
+            <div class="topic-card">
+
+                <div class="topic-number">
+                    01
+                </div>
+
+                <div class="topic-icon">
+                    🗃️
+                </div>
+
+                <h3>
+                    Database
+                </h3>
+
+                <p>
+                    A database is a structured
+                    collection of information that
+                    can be stored, organized and
+                    accessed.
+                </p>
+
+            </div>
+
+
+
+            <div class="topic-card">
+
+                <div class="topic-number">
+                    02
+                </div>
+
+                <div class="topic-icon">
+                    📋
+                </div>
+
+                <h3>
+                    Tables
+                </h3>
+
+                <p>
+                    Tables organize information
+                    using rows and columns.
+                </p>
+
+            </div>
+
+
+
+            <div class="topic-card">
+
+                <div class="topic-number">
+                    03
+                </div>
+
+                <div class="topic-icon">
+                    🔑
+                </div>
+
+                <h3>
+                    Primary Key
+                </h3>
+
+                <p>
+                    A primary key uniquely
+                    identifies each record in
+                    a table.
+                </p>
+
+            </div>
+
+
+
+            <div class="topic-card">
+
+                <div class="topic-number">
+                    04
+                </div>
+
+                <div class="topic-icon">
+                    🔗
+                </div>
+
+                <h3>
+                    Foreign Key
+                </h3>
+
+                <p>
+                    A foreign key connects
+                    related information between
+                    tables.
+                </p>
+
+            </div>
+
+
+
+            <div class="topic-card">
+
+                <div class="topic-number">
+                    05
+                </div>
+
+                <div class="topic-icon">
+                    💻
+                </div>
+
+                <h3>
+                    SQL
+                </h3>
+
+                <p>
+                    SQL is used to communicate
+                    with relational databases.
+                </p>
+
+            </div>
+
+
+
+            <div class="topic-card">
+
+                <div class="topic-number">
+                    06
+                </div>
+
+                <div class="topic-icon">
+                    ⚙️
+                </div>
+
+                <h3>
+                    DBMS
+                </h3>
+
+                <p>
+                    A DBMS helps users create,
+                    manage and maintain databases.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         DATABASE PICTURE
+    ========================== -->
+
+    <section class="section">
+
+        <div class="section-title">
+
+            <h2>
+                🖼️ Visual Learning
+            </h2>
+
+            <p>
+                Use the picture as an additional
+                database learning reference.
+            </p>
+
+        </div>
+
+
+        <div class="material-card">
+
+
+            <div class="material-text">
+
+                <h3>
+                    🗄️ Database Visual
+                </h3>
+
+
+                <p>
+
+                    Study the visual material to
+                    understand database structures,
+                    tables and relationships more
+                    easily.
+
+                </p>
+
+
+                <a
+                    href="database-picture.jpg"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="main-btn">
+
+                    🔍 View Full Picture
+
+                </a>
+
+            </div>
+
+
+            <div>
+
+                <img
+                    src="database-picture.jpg"
+                    alt="Database Learning Picture"
+                    class="material-image">
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         VIDEO LESSONS
+    ========================== -->
+
+    <section class="section">
+
+        <div class="section-title">
+
+            <h2>
+                🎬 Database Video Lessons
+            </h2>
+
+            <p>
+                Watch the videos to learn more
+                about databases.
+            </p>
+
+        </div>
+
+
+        <div class="video-grid">
+
+
+            <!-- VIDEO 1 -->
+
+            <div class="video-card">
+
+                <h3>
+                    🎥 Database Video Lesson 1
+                </h3>
+
+
+                <div class="video-wrapper">
+
+                    <iframe
+                        src="https://www.youtube.com/embed/6fgbLOL7bis"
+                        title="Database Video Lesson 1"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- VIDEO 2 -->
+
+            <div class="video-card">
+
+                <h3>
+                    🎥 Database Video Lesson 2
+                </h3>
+
+
+                <div class="video-wrapper">
+
+                    <iframe
+                        src="https://www.youtube.com/embed/alYwqzO6ZEQ"
+                        title="Database Video Lesson 2"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         PDF
+    ========================== -->
+
+    <section class="section">
+
+        <div class="section-title">
+
+            <h2>
+                📄 Database Learning Material
+            </h2>
+
+            <p>
+                Read your database notes on
+                your phone, tablet or computer.
+            </p>
+
+        </div>
+
+
+        <div class="pdf-card">
+
+
+            <div class="pdf-icon">
+                📱📄
+            </div>
+
+
+            <h3>
+                Database Notes PDF
+            </h3>
+
+
+            <p>
+
+                Open the PDF directly in your
+                browser or download it to your
+                phone for offline reading.
+
+            </p>
+
+
+            <div class="pdf-buttons">
+
+
+                <!-- OPEN PDF -->
+
+                <a
+                    href="database.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="main-btn">
+
+                    📖 Open PDF
+
+                </a>
+
+
+                <!-- DOWNLOAD PDF -->
+
+                <a
+                    href="database.pdf"
+                    download
+                    class="pdf-download-btn">
+
+                    ⬇️ Download PDF
+
+                </a>
+
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         DATABASE TABLE
+    ========================== -->
+
+    <section class="section">
+
+        <div class="section-title">
+
+            <h2>
+                📊 Example Database Table
+            </h2>
+
+            <p>
+                A simple example of student data.
+            </p>
+
+        </div>
+
+
+        <div class="table-card">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Student ID
+                        </th>
+
+                        <th>
+                            Name
+                        </th>
+
+                        <th>
+                            Course
+                        </th>
+
+                        <th>
+                            Age
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    <tr>
+
+                        <td>001</td>
+
+                        <td>Alice</td>
+
+                        <td>IT</td>
+
+                        <td>18</td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>002</td>
+
+                        <td>Daniel</td>
+
+                        <td>Computer Science</td>
+
+                        <td>19</td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>003</td>
+
+                        <td>Sarah</td>
+
+                        <td>Multimedia</td>
+
+                        <td>18</td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>004</td>
+
+                        <td>Michael</td>
+
+                        <td>Networking</td>
+
+                        <td>20</td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         SQL EXAMPLES
+    ========================== -->
+
+    <section class="section">
+
+        <div class="section-title">
+
+            <h2>
+                💻 Basic SQL Examples
+            </h2>
+
+            <p>
+                Common SQL commands used with databases.
+            </p>
+
+        </div>
+
+
+        <div class="sql-box">
+
+            <div class="sql-title">
+                SQL Example
+            </div>
+
+
+<pre>
+-- Create a table
+
+CREATE TABLE Students (
+    StudentID INT PRIMARY KEY,
+    Name VARCHAR(50),
+    Course VARCHAR(50),
+    Age INT
+);
+
+
+-- Insert data
+
+INSERT INTO Students
+(StudentID, Name, Course, Age)
+VALUES
+(1, 'Alice', 'IT', 18);
+
+
+-- Display data
+
+SELECT *
+FROM Students;
+
+
+-- Update data
+
+UPDATE Students
+SET Age = 19
+WHERE StudentID = 1;
+
+
+-- Delete data
+
+DELETE FROM Students
+WHERE StudentID = 1;
+</pre>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         SQL COMMAND CARDS
+    ========================== -->
+
+    <section class="section">
+
+        <div class="section-title">
+
+            <h2>
+                ⚡ Common SQL Commands
+            </h2>
+
+            <p>
+                Remember what each command does.
+            </p>
+
+        </div>
+
+
+        <div class="topic-grid">
+
+
+            <div class="topic-card">
+
+                <div class="topic-icon">
+                    🔎
+                </div>
+
+                <h3>
+                    SELECT
+                </h3>
+
+                <p>
+                    Retrieves data from a database.
+                </p>
+
+            </div>
+
+
+            <div class="topic-card">
+
+                <div class="topic-icon">
+                    ➕
+                </div>
+
+                <h3>
+                    INSERT
+                </h3>
+
+                <p>
+                    Adds new records to a table.
+                </p>
+
+            </div>
+
+
+            <div class="topic-card">
+
+                <div class="topic-icon">
+                    ✏️
+                </div>
+
+                <h3>
+                    UPDATE
+                </h3>
+
+                <p>
+                    Changes existing records.
+                </p>
+
+            </div>
+
+
+            <div class="topic-card">
+
+                <div class="topic-icon">
+                    🗑️
+                </div>
+
+                <h3>
+                    DELETE
+                </h3>
+
+                <p>
+                    Removes records from a table.
+                </p>
+
+            </div>
+
+
+            <div class="topic-card">
+
+                <div class="topic-icon">
+                    🏗️
+                </div>
+
+                <h3>
+                    CREATE
+                </h3>
+
+                <p>
+                    Creates database objects
+                    such as tables.
+                </p>
+
+            </div>
+
+
+            <div class="topic-card">
+
+                <div class="topic-icon">
+                    🔗
+                </div>
+
+                <h3>
+                    JOIN
+                </h3>
+
+                <p>
+                    Combines related information
+                    from multiple tables.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         QUIZ
+    ========================== -->
+
+    <section class="section">
+
+        <div class="section-title">
+
+            <h2>
+                🧠 Database Quiz
+            </h2>
+
+            <p>
+                Test your database knowledge.
+            </p>
+
+        </div>
+
+
+        <div class="quiz-box">
+
+
+            <div
+                class="quiz-progress"
+                id="quizProgress">
+
+                Question 1 of 10
+
+            </div>
+
+
+            <div
+                class="question"
+                id="question">
+
+                Loading question...
+
+            </div>
+
+
+            <div
+                class="answers"
+                id="answers">
+
+            </div>
+
+
+            <div
+                class="quiz-result"
+                id="quizResult">
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+
+<!-- =========================
+     FOOTER
+========================== -->
+
+<footer>
+
+    <p>
+
+        © 2026
+        <strong>EDU-TECH</strong>
+        • Database Learning
+
+    </p>
+
+
+    <p style="margin-top:8px;">
+
+        Learn • Practice • Improve 🚀
+
+    </p>
+
+</footer>
+
+
+
+<!-- =========================
+     JAVASCRIPT
+========================== -->
+
+<script>
+
+
+    const quizQuestions = [
+
+        {
+            question: "What is a database?",
+
+            answers: [
+                "A collection of organized data",
+                "A computer game",
+                "A web browser",
+                "A programming language"
+            ],
+
+            correct:
+                "A collection of organized data"
+        },
+
+
+        {
+            question: "What is a table used for?",
+
+            answers: [
+                "Organizing data",
+                "Playing videos",
+                "Creating animations",
+                "Connecting to Wi-Fi"
+            ],
+
+            correct:
+                "Organizing data"
+        },
+
+
+        {
+            question:
+                "Which key uniquely identifies a record?",
+
+            answers: [
+                "Foreign Key",
+                "Primary Key",
+                "Secondary Key",
+                "Video Key"
+            ],
+
+            correct:
+                "Primary Key"
+        },
+
+
+        {
+            question:
+                "What does SQL stand for?",
+
+            answers: [
+                "Structured Query Language",
+                "Simple Question Language",
+                "System Query Link",
+                "Structured Quick Logic"
+            ],
+
+            correct:
+                "Structured Query Language"
+        },
+
+
+        {
+            question:
+                "Which SQL command retrieves data?",
+
+            answers: [
+                "INSERT",
+                "DELETE",
+                "SELECT",
+                "UPDATE"
+            ],
+
+            correct:
+                "SELECT"
+        },
+
+
+        {
+            question:
+                "Which SQL command adds a new record?",
+
+            answers: [
+                "SELECT",
+                "INSERT",
+                "DELETE",
+                "UPDATE"
+            ],
+
+            correct:
+                "INSERT"
+        },
+
+
+        {
+            question:
+                "Which SQL command changes existing data?",
+
+            answers: [
+                "UPDATE",
+                "INSERT",
+                "CREATE",
+                "SELECT"
+            ],
+
+            correct:
+                "UPDATE"
+        },
+
+
+        {
+            question:
+                "Which SQL command removes data?",
+
+            answers: [
+                "SELECT",
+                "INSERT",
+                "DELETE",
+                "UPDATE"
+            ],
+
+            correct:
+                "DELETE"
+        },
+
+
+        {
+            question:
+                "What connects related tables?",
+
+            answers: [
+                "Foreign Key",
+                "Primary Key only",
+                "Text Box",
+                "Image"
+            ],
+
+            correct:
+                "Foreign Key"
+        },
+
+
+        {
+            question:
+                "What does DBMS mean?",
+
+            answers: [
+                "Database Management System",
+                "Data Browser Management Software",
+                "Database Memory Storage",
+                "Digital Backup Management System"
+            ],
+
+            correct:
+                "Database Management System"
+        }
+
+    ];
+
+
+    let currentQuestion = 0;
+
+    let score = 0;
+
+
+
+    /* =========================
+       LOAD QUESTION
+    ========================= */
+
+    function loadQuestion() {
+
+        const question =
+            quizQuestions[currentQuestion];
+
+
+        document.getElementById(
+            "quizProgress"
+        ).textContent =
+            "Question " +
+            (currentQuestion + 1) +
+            " of " +
+            quizQuestions.length;
+
+
+        document.getElementById(
+            "question"
+        ).textContent =
+            question.question;
+
+
+        const answersContainer =
+            document.getElementById("answers");
+
+
+        answersContainer.innerHTML = "";
+
+
+        document.getElementById(
+            "quizResult"
+        ).textContent = "";
+
+
+        question.answers.forEach(
+            function(answer) {
+
+                const button =
+                    document.createElement(
+                        "button"
+                    );
+
+
+                button.className =
+                    "answer-btn";
+
+
+                button.textContent =
+                    answer;
+
+
+                button.onclick =
+                    function() {
+
+                        checkAnswer(
+                            button,
+                            answer
+                        );
+
+                    };
+
+
+                answersContainer.appendChild(
+                    button
+                );
+
+            }
+        );
+
+    }
+
+
+
+    /* =========================
+       CHECK ANSWER
+    ========================= */
+
+    function checkAnswer(
+        button,
+        answer
+    ) {
+
+        const question =
+            quizQuestions[currentQuestion];
+
+
+        const buttons =
+            document.querySelectorAll(
+                ".answer-btn"
+            );
+
+
+        buttons.forEach(
+            function(btn) {
+
+                btn.disabled = true;
+
+            }
+        );
+
+
+        if (
+            answer ===
+            question.correct
+        ) {
+
+            button.classList.add(
+                "correct"
+            );
+
+            score++;
+
+        }
+
+        else {
+
+            button.classList.add(
+                "wrong"
+            );
+
+
+            buttons.forEach(
+                function(btn) {
+
+                    if (
+                        btn.textContent ===
+                        question.correct
+                    ) {
+
+                        btn.classList.add(
+                            "correct"
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+
+
+        setTimeout(
+            function() {
+
+                currentQuestion++;
+
+
+                if (
+                    currentQuestion <
+                    quizQuestions.length
+                ) {
+
+                    loadQuestion();
+
+                }
+
+                else {
+
+                    showQuizResult();
+
+                }
+
+            },
+            900
+        );
+
+    }
+
+
+
+    /* =========================
+       SHOW RESULT
+    ========================= */
+
+    function showQuizResult() {
+
+        document.getElementById(
+            "quizProgress"
+        ).textContent =
+            "Quiz Complete 🎉";
+
+
+        document.getElementById(
+            "question"
+        ).textContent =
+            "Well done!";
+
+
+        document.getElementById(
+            "answers"
+        ).innerHTML = "";
+
+
+        let message;
+
+
+        if (score === 10) {
+
+            message =
+                "Perfect Score! 🏆";
+
+        }
+
+        else if (score >= 8) {
+
+            message =
+                "Excellent Work! 🌟";
+
+        }
+
+        else if (score >= 6) {
+
+            message =
+                "Great Job! 👍";
+
+        }
+
+        else if (score >= 4) {
+
+            message =
+                "Good Try! 💪";
+
+        }
+
+        else {
+
+            message =
+                "Keep Practising! 📚";
+
+        }
+
+
+        document.getElementById(
+            "quizResult"
+        ).innerHTML =
+
+            message +
+
+            "<br><br>" +
+
+            "Your Score: " +
+
+            score +
+
+            " / " +
+
+            quizQuestions.length +
+
+            "<br>" +
+
+            '<button class="restart-btn" onclick="restartQuiz()">';
+
+        document.getElementById(
+            "quizResult"
+        ).innerHTML +=
+            "🔄 Try Again";
+
+        document.getElementById(
+            "quizResult"
+        ).innerHTML +=
+            "</button>";
+
+    }
+
+
+
+    /* =========================
+       RESTART QUIZ
+    ========================= */
+
+    function restartQuiz() {
+
+        currentQuestion = 0;
+
+        score = 0;
+
+        loadQuestion();
+
+    }
+
+
+
+    /* =========================
+       START QUIZ
+    ========================= */
+
+    loadQuestion();
+
+</script>
+
+
+</body>
+
+</html>
